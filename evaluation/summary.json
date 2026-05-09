@@ -1,0 +1,22 @@
+[
+  {
+    "config": "A_Base_No_RAG",
+    "accuracy": 10.0,
+    "avg_time": 0.55
+  },
+  {
+    "config": "B_Base_RAG",
+    "accuracy": 40.0,
+    "avg_time": 0.84
+  },
+  {
+    "config": "C_FT_No_RAG",
+    "accuracy": 7.5,
+    "avg_time": 0.49
+  },
+  {
+    "config": "D_FT_RAG",
+    "accuracy": 42.5,
+    "avg_time": 0.76
+  }
+]
