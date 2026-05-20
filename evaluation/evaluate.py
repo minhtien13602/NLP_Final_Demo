@@ -1,10 +1,7 @@
 import json
 import time
 
-
-# =====================================================
 # LOAD TEST SET
-# =====================================================
 
 with open(
     "evaluation/test_qa.json",
@@ -15,9 +12,7 @@ with open(
     test_data = json.load(f)
 
 
-# =====================================================
 # IMPORT CONFIGS
-# =====================================================
 
 from experiments.A_base_no_rag import ask_A
 from experiments.B_base_rag import ask_B
@@ -39,10 +34,8 @@ configs = {
 
 summary = []
 
-
-# =====================================================
 # EVALUATE
-# =====================================================
+
 
 for config_name, ask_fn in configs.items():
 
@@ -62,10 +55,7 @@ for config_name, ask_fn in configs.items():
 
         gt = sample["answer"]
 
-
-        # =============================================
         # INFERENCE
-        # =============================================
 
         start = time.time()
 
@@ -78,10 +68,7 @@ for config_name, ask_fn in configs.items():
 
         total_time += infer_time
 
-
-        # =============================================
         # EXACT MATCH
-        # =============================================
 
         gt_clean = gt.lower().strip()
 
@@ -124,9 +111,7 @@ for config_name, ask_fn in configs.items():
         print("Correct:", is_correct)
 
 
-    # =============================================
     # METRICS
-    # =============================================
 
     accuracy = correct / len(test_data)
 
@@ -143,9 +128,7 @@ for config_name, ask_fn in configs.items():
     })
 
 
-# =====================================================
 # SAVE
-# =====================================================
 
 with open(
     "evaluation/summary.json",

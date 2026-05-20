@@ -6,13 +6,10 @@ from sentence_transformers import SentenceTransformer
 
 
 INPUT_FILE = "data/processed/chunks.json"
-
 OUTPUT_INDEX = "data/processed/faiss.index"
 
 
-# =====================================================
 # LOAD CHUNKS
-# =====================================================
 
 with open(INPUT_FILE, "r", encoding="utf-8") as f:
 
@@ -22,18 +19,15 @@ with open(INPUT_FILE, "r", encoding="utf-8") as f:
 print("Loaded chunks:", len(chunks))
 
 
-# =====================================================
+
 # LOAD EMBEDDING MODEL
-# =====================================================
 
 model = SentenceTransformer(
     "keepitreal/vietnamese-sbert"
 )
 
 
-# =====================================================
 # CREATE EMBEDDINGS
-# =====================================================
 
 embeddings = model.encode(
     chunks,
@@ -51,9 +45,7 @@ embeddings = np.array(
 print("Embedding shape:", embeddings.shape)
 
 
-# =====================================================
 # CREATE FAISS INDEX
-# =====================================================
 
 dimension = embeddings.shape[1]
 
@@ -62,9 +54,7 @@ index = faiss.IndexFlatIP(dimension)
 index.add(embeddings)
 
 
-# =====================================================
 # SAVE
-# =====================================================
 
 faiss.write_index(
     index,
